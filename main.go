@@ -15,7 +15,7 @@ import (
 func main() {
 
 	// init index
-	dataPath := "data.bleve"
+	dataPath := "data"
 	index, err := bleve.Open(dataPath)
 	if err == bleve.ErrorIndexPathDoesNotExist {
 
