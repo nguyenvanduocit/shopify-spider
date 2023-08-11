@@ -8,11 +8,21 @@ import (
 	sitemap "github.com/oxffaa/gopher-parse-sitemap"
 	"log"
 	"net/http"
+	"os"
 	"shopifyspider/pkg"
 	"time"
 )
 
 func main() {
+
+	go func() {
+		// healthz
+		http.HandleFunc("/healthz", func(w http.ResponseWriter, r *http.Request) {
+			w.WriteHeader(http.StatusOK)
+		})
+
+		http.ListenAndServe(":"+os.Getenv("PORT"), nil)
+	}()
 
 	// init index
 	dataPath := "data"
